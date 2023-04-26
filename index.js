@@ -1,20 +1,40 @@
 // create a function that returns true or false
 function hasTargetSum(array, target) {
-  // will get each element of the Array  
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length; j++) {
-      // combine it with the other elements 
-      if (array[i] + array[j] === target) {
-        return true
-      }
-    }
+  // // will get each element of the Array  
+  // for (let i = 0; i < array.length; i++) {
+  //   for (let j = i + 1; j < array.length; j++) {
+  //     // combine it with the other elements 
+  //     if (array[i] + array[j] === target) {
+  //       return true
+  //     }
+  //   }
+  // }
+  // return false
+
+  const seenNumbers = new Set(); // initialize an empty Set
+  for (const number of array) {
+    const complement = target - number;
+
+    // .has returns true if the Set includes the complement
+    if (seenNumbers.has(complement)) return true;
+
+    // .add adds the number to the Set
+    seenNumbers.add(number);
   }
-  return false
+  return false;
 }
 
-/* 
-  Write the Big O time complexity of your function here
-*/
+// // O(n) runtime
+// function findSock(array) {
+//   for (const item of array) {
+//     if (item === "sock") return "sock";
+//   }
+// }
+
+// // O(1) runtime
+// function findSock(object) {
+//   if (object.sock) return "sock";
+// }
 
 /* 
   Add your pseudocode here
